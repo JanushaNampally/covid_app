@@ -15,7 +15,8 @@ def predictor_view(request):
             feature2 = float(request.POST.get('feature2', 0))
             feature3 = float(request.POST.get('feature3', 0))
         
-            model = joblib.load('analysis/covid_rf_model.pkl')
+            model = joblib.load('analysis\covid_rf_model.pkl')
+            print(model)
             prediction = model.predict([[feature1, feature2, feature3]])[0]
         
         
@@ -26,6 +27,8 @@ def predictor_view(request):
         
         except Exception as e:
             error_message = f"An error occured: {str(e)}"
+            print(error_message)
+            print(e)
         
     return render(request, 'analysis/predictor.html', {'prediction': prediction, 'error_message': error_message})
 
