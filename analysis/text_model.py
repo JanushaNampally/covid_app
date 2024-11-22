@@ -4,7 +4,7 @@ import joblib
 model = joblib.load('covid_rf_model.pkl')
 
 # Test with some example input (adjust the values based on your model's feature expectations)
-input_data = [[51, 1, 1]]  # Example: Age 30, Fever (1 = Yes), Cough (0 = No)
+input_data = [[50, 1, 1]]  # Example: Age 30, Fever (1 = Yes), Cough (0 = No)
 
 # Make the prediction
 prediction = model.predict(input_data)

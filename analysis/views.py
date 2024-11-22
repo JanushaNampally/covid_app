@@ -1,36 +1,26 @@
-from django.shortcuts import render  # type: ignore
-import joblib # type: ignore
-from sklearn.ensemble import RandomForestClassifier # type: ignore
-import numpy as np 
-from django.shortcuts import render # type: ignore
+from django.shortcuts import render
+import joblib
 
-# Create your views here.  # type: ignore
 def predictor_view(request):
-    prediction = None 
+    prediction = None
+    error_message = None
     
-    error_message = None 
+    # If the request is POST, handle the form submission
     if request.method == "POST":
-        try: 
+        try:
             feature1 = float(request.POST.get('feature1', 0))
             feature2 = float(request.POST.get('feature2', 0))
             feature3 = float(request.POST.get('feature3', 0))
         
-            model = joblib.load('analysis\covid_rf_model.pkl')
-            print(model)
+            model = joblib.load('analysis/covid_rf_model.pkl')
             prediction = model.predict([[feature1, feature2, feature3]])[0]
-        
         
         except ValueError:
             error_message = "Invalid input. Please enter valid numeric values."
         except FileNotFoundError:
-            error_message = "model file not found. ENsure 'covid_rf_model.pkl' exists in the specified path."
-        
+            error_message = "Model file not found. Ensure 'covid_rf_model.pkl' exists in the specified path."
         except Exception as e:
-            error_message = f"An error occured: {str(e)}"
-            print(error_message)
-            print(e)
-        
+            error_message = f"An error occurred: {str(e)}"
+    
+    # Pass prediction and error_message only after form submission
     return render(request, 'analysis/predictor.html', {'prediction': prediction, 'error_message': error_message})
-
-
-
