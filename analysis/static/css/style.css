@@ -1,0 +1,17 @@
+body {
+    font-family: Arial, sans-serif;
+    background: url('static/images/bg.jpg');
+    background-size: cover ;
+    color: white;
+}
+.container {
+    width: 50%;
+    margin: 0 auto;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 20px;
+    border-radius: 10px;
+}
+label, input, button {
+    display: block;
+    margin: 10px 0;
+}
