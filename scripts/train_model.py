@@ -3,7 +3,7 @@ from sklearn.model_selection import train_test_split  # type: ignore
 from sklearn.ensemble import RandomForestClassifier  # type: ignore
 import joblib  # type: ignore
 
-data = pd.read_csv("covid_dataset.csv")
+data = pd.read_csv(r"covid_binary_dataset.csv")
 
 X = data[['feature1', 'feature2', 'feature3']]
 y = data['outcome']
