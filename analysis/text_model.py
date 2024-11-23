@@ -1,4 +1,4 @@
-import joblib
+import joblib # type: ignore
 
 # Load the model (make sure to provide the correct path to your .pkl file)
 model = joblib.load('path/to/covid_rf_model.pkl')
