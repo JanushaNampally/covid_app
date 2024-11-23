@@ -12,14 +12,22 @@
         <h1>COVID-19 Predictor</h1>
         <form method="POST" action="{% url 'predictor' %}">
             {% csrf_token %}
-            <label for="feature1">Age:</label>
-            <input type="number" step="any" name="feature1" required>
+            <label>Age:</label>
+            <input type="number" step="any" name="age" required><br>
 
-            <label for="feature2">Fever (Enter 1 for 'yes' and 0 for 'no'):</label>
-            <input type="number" step="any" name="feature2" required>
+            <label>Fever (1 for 'yes', 0 for 'No'):</label>
+            <input type="number" step="any" name="fever" required>
             
-            <label for="feature3">Cough (Enter 1 for 'yes' and 0 for 'no'):</label>
-            <input type="number" step="any" name="feature3" required>
+            <label>Cough (1 for 'yes', 0 for 'No'):</label>
+            <input type="number" step="any" name="cough" required>
+
+            <label>Hypertension (1 for 'yes', 0 for 'No'):</label>
+            <input type="number" step="any" name="hypertension" required>
+
+            <label>Cardiovascular (1 for 'yes', 0 for 'No'):</label>
+            <input type="number" step="any" name="cardiovascular" required>
+            <label>obesity (1 for 'yes', 0 for 'No'):</label>
+            <input type="number" step="any" name="obesity" required>
 
             <button type="submit">Predict</button>
             <br>

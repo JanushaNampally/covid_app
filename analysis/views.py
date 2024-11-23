@@ -1,26 +1,27 @@
-from django.shortcuts import render
-import joblib
+import joblib # type: ignore
+from django.shortcuts import render # type: ignore
+
 
 def predictor_view(request):
-    prediction = None
-    error_message = None
     
     # If the request is POST, handle the form submission
     if request.method == "POST":
         try:
-            feature1 = float(request.POST.get('feature1', 0))
-            feature2 = float(request.POST.get('feature2', 0))
-            feature3 = float(request.POST.get('feature3', 0))
-        
-            model = joblib.load('analysis/covid_rf_model.pkl')
-            prediction = model.predict([[feature1, feature2, feature3]])[0]
-        
-        except ValueError:
-            error_message = "Invalid input. Please enter valid numeric values."
-        except FileNotFoundError:
-            error_message = "Model file not found. Ensure 'covid_rf_model.pkl' exists in the specified path."
+            age = int(request.POST.get('age', 0))
+            fever = int(request.POST.get('fever', 0))
+            cough = int(request.POST.get('cough', 0))
+            hypertension = int(request.POST.get('hypertension', 0))
+            cardiovascular = int(request.POST.get('cardiovascular', 0))
+            obesity = int(request.POST.get('obesity', 0))
+            
+            model = joblib.load('covid_app/analysis/covid_rf_model.pkl')
+            input_features = [[age, fever, cough, hypertension, cardiovascular, obesity]]
+            
+            prediction = model.predict(input_features)
+            result = "You are likely COVID positive." if prediction[0] == 1 else "You are likely COVID negative."
         except Exception as e:
-            error_message = f"An error occurred: {str(e)}"
-    
+            result = f"Error occured: {str(e)}"
+        return render(request, 'predictor.html', {'result': result})
+    return render(request, 'predictor.html')
     # Pass prediction and error_message only after form submission
-    return render(request, 'analysis/predictor.html', {'prediction': prediction, 'error_message': error_message})
+    
