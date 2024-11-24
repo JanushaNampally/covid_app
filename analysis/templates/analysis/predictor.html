@@ -7,6 +7,24 @@
     <title>COVID-19 Predictor</title>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: url('static/images/bg.jpg');
+        background-size: cover;
+        color: white;
+    }
+    .container {
+        width: 50%;
+        margin: 0 auto;
+        background: rgba(0, 0, 0, 0.8);
+        padding: 20px;
+        border-radius: 10px;
+    }
+    label, input, button {
+        display: block;
+        margin: 10px 0;
+    }</style>
 <body>
     <div class="container">
         <h1>COVID-19 Predictor</h1>
@@ -16,16 +34,16 @@
             <input type="number" step="any" name="age" required><br>
 
             <label>Fever (1 for 'yes', 0 for 'No'):</label>
-            <input type="number" step="any" name="fever" required>
+            <input type="number" step="any" name="fever" required><br>
             
             <label>Cough (1 for 'yes', 0 for 'No'):</label>
-            <input type="number" step="any" name="cough" required>
+            <input type="number" step="any" name="cough" required><br>
 
             <label>Hypertension (1 for 'yes', 0 for 'No'):</label>
-            <input type="number" step="any" name="hypertension" required>
+            <input type="number" step="any" name="hypertension" required><br>
 
             <label>diabetes (1 for 'yes', 0 for 'No'):</label>
-            <input type="number" step="any" name="diabetes" required>
+            <input type="number" step="any" name="diabetes" required><br>
 
             <label>Travel History to High-Risk area ( 1 for 'yes', 0 for 'No'):</label>
             <input type="number" step="any" name="travel_history" required><br>
